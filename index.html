@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/store.js"></script>
+    <script src="js/tags-input.js"></script>
+    <script src="js/main.js"></script>
+    <title>todoMVC</title>
+</head>
+<body>
+    <header>
+        <h1>Todos</h1>
+        <!-- <input type="checkbox" class="toggle-all"> -->
+        <p class="toggle-all">
+            <input type="checkbox" id="toggle-all" />
+            <label for="toggle-all">Finish All</label>
+        </p>
+        <!-- <input class="input-todo" placeholder="What needs to be done>" autofocus> -->
+        <div class="input">
+            <div class="tags-input"></div>
+            <!-- <div class="tags-input"><span>TestSpan</span><span>TestSpan2</span>123</div> -->
+            <input type="date" name="input-date" id="input-date" value="2020-06-25">
+        </div>
+    </header>
+    
+    <section id="main">
+        <ul id="todo-list">
+            <!-- <li class="todos-in-a-day" id="2020-06-25">
+                <div class="todo-date">2020-06-25</div>
+                <ul class="todo-content">
+                    <li class="todo-item">
+                        <span class="toggle"><img class="completed"></span>
+                        <div class="todo-text">Test text.</div>
+                    </li>
+                    <li class="todo-item">
+                        <span class="toggle"><img></span>
+                        <div class="todo-text">Second test text.</div>
+                    </li>
+                </ul>
+            </li> -->
+        </ul>
+    </section>
+        
+    <footer id="footer">
+        <span id="count">No item left</span>
+        <a id="all" href="#/" class="selected">All</a>
+        <a id="active" href="#/">Active</a>
+        <a id="completed" href="#/">Completed</a>
+        <button id="clear">Clear completed</button>
+    </footer>
+</body>
+</html>

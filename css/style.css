@@ -1,0 +1,378 @@
+html, 
+body {
+    margin: 0%;
+    padding: 0%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+body {
+    font-size: 14px;
+    font-weight: 300;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 2em;
+    background: #f5f5f5;
+    color: #4d4d4d;
+    margin: 0 auto;
+    /*
+     * -webkit 是 Chrome 和 Safari 的私有属性
+     *  antialiased，抗锯齿，使字体清晰，在 iOS 上效果较好。
+     */
+    -webkit-font-smoothing: antialiased;
+    /*
+     * -moz-osx-font-smoothing，是火狐针对ios系统制定的规则
+     * Grayscale：字体抗锯齿，比较清晰
+     */
+    -moz-osx-font-smoothing: grayscale;
+}
+
+:focus {
+    outline: none;
+}
+
+.hidden {
+    display: none;
+}
+
+span.highlight {
+    background: yellow !important;
+    color: black !important;
+    margin: 0 !important;
+    padding: 0!important;
+    border-radius: 0% !important;
+}
+
+/**
+ * Header 
+ */
+
+header {
+    background: #e5e5e5;
+    overflow: hidden;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+	font-size: 35px;
+	font-weight: 50;
+    text-align: center;
+    float: left;
+    margin-left: 10px;
+    color: #71ccd5;
+    /* text-shadow: 0px 5px 5px rgba(81,67,21,0.8); */
+	-webkit-text-rendering: optimizeLegibility;
+	-moz-text-rendering: optimizeLegibility;
+	text-rendering: optimizeLegibility;
+}
+
+.toggle-all {
+    float: right;
+    margin-top: 25px;
+    margin-right: 5px;
+}
+
+/* Base for label styling */
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+  position: absolute;
+  left: -9999px;
+}
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label {
+  position: relative;
+  padding-left: 1.95em;
+  cursor: pointer;
+}
+
+/* checkbox aspect */
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  width: 1.25em; height: 1.25em;
+  border: 2px solid #ccc;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+}
+/* checked mark aspect */
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+  content: '\2713\0020';
+  position: absolute;
+  top: .15em; left: .22em;
+  font-size: 1.3em;
+  line-height: 0.8;
+  color: #09ad7e;
+  transition: all .2s;
+  font-family: 'Lucida Sans Unicode', 'Arial Unicode MS', Arial;
+}
+/* checked mark aspect changes */
+[type="checkbox"]:not(:checked) + label:after {
+  opacity: 0;
+  transform: scale(0);
+}
+[type="checkbox"]:checked + label:after {
+  opacity: 1;
+  transform: scale(1);
+}
+/* accessibility */
+[type="checkbox"]:checked:focus + label:before,
+[type="checkbox"]:not(:checked):focus + label:before {
+  border: 2px dotted blue;
+}
+
+/* hover style just for information */
+label:hover:before {
+  border: 2px solid #4778d9!important;
+}
+
+.input {
+    width: 99%;
+    background: white;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    border: 2px solid #bbb;
+    overflow: hidden;
+}
+
+.input:focus {
+    border-color: #71ccd5;
+}
+
+[type="date"] {
+  background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
+}
+[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+.input input {
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 3px 5px;
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+  width: 120px;
+}
+
+.tags-input {
+    height: 100%;
+    width: calc(100vw - 130px);
+    padding: 0 11px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    color: #888;
+}
+
+.tags-input span,
+.todo-text span {
+    margin-right: 7px;
+    color: white;
+    border-radius: 10px;
+}
+
+.tags-input span {
+    padding: 2px 7px;
+}
+
+.todo-text span {
+    padding: 2px 4px;
+}
+
+.tags-input span:nth-of-type(4n+1),
+.todo-text span.tag:nth-of-type(4n+1) {
+    background: lightcoral;
+}
+
+.tags-input span:nth-of-type(4n+2),
+.todo-text span.tag:nth-of-type(4n+2) {
+    /* background: lightgoldenrodyellow; */
+    background: yellowgreen;
+}
+
+.tags-input span:nth-of-type(4n+3),
+.todo-text span.tag:nth-of-type(4n+3) {
+    /* background: lightcyan; */
+    background: skyblue;
+}
+
+.tags-input span:nth-of-type(4n+4),
+.todo-text span.tag:nth-of-type(4n+4) {
+    background: lightpink;
+}
+
+/* .todo-text span[data-selected], */
+.tags-input span[data-selected] {
+    background: #71ccd5;
+}
+
+#input-date {
+    width: 130px;
+    height: 100%;
+    display: inline-block;
+    padding: auto;
+    border: none;
+    outline: none;
+    border-left: 1px solid #ededed;
+    font-size:14px;
+    padding: 0;
+}
+
+
+/** Main content */
+
+#main {
+    position: absolute;
+    top: 112px;
+    bottom: 45px;
+    overflow: auto;
+    /* 滚动 */
+    overflow-y: scroll;
+    width: 100%;
+}
+
+#todo-list {
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
+}
+
+#todo-list li.todos-in-a-day {
+    background-color: white;
+    position: relative;
+    margin: 15px 12px;
+    font-size: 20px;
+    list-style: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.todo-date {
+    height: 18px;
+    font-size: 18px;
+    text-align: center;
+    padding: 10px 0px;
+    border-bottom: 1px solid #ededed;
+}
+
+.todo-content {
+    list-style: none;
+    padding-inline-start: 0;
+}
+
+.todo-item {
+    display: flex;
+    position: relative;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+    border-bottom: 1px solid #ededed;
+}
+
+.todo-content li:last-child {
+    border-bottom: none;
+}
+
+.toggle {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+}
+
+.toggle > img.completed {
+    content: url("../img/toggle-icon.png");
+}
+
+.toggle > img {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+
+
+.todo-text {
+    display: inline-block;
+    font-size: 18px;
+    margin: 15px 10px 15px 10px;
+    flex-grow: 1;
+}
+
+.todo-text.completed {
+    text-decoration: line-through;
+    color: #D9D9D9;
+    transition: .2s;
+}
+
+.todo-text.completed span {
+    text-decoration: none;
+    background: #bbb;
+}
+
+
+
+
+/** Footer */
+#footer {
+    color: rgb(119, 119, 119);
+    padding: 10px 15px;
+    height: 25px;
+    text-align: center;
+    border-top: 2px solid #e6e6e6;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+}
+
+#count {
+    float: left;
+    text-align: left;
+}
+
+#footer a {
+    display: inline;
+    color: inherit;
+    margin: 2px;
+    padding: 4px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+#footer a.selected,
+#footer a:hover {
+    border-color: #71ccd5;
+}
+
+#clear {
+    /* float: right; */
+    border: none;
+    outline: none;
+    background: white;
+    right: 2px;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    /* padding-right: 4px; */
+}
+
+#clear:hover {
+    color: red;
+}
