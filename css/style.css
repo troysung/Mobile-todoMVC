@@ -189,24 +189,24 @@ label:hover:before {
 }
 
 .tags-input span:nth-of-type(4n+1),
-.todo-text span.tag:nth-of-type(4n+1) {
+.todo-text span:nth-of-type(4n+1) {
     background: lightcoral;
 }
 
 .tags-input span:nth-of-type(4n+2),
-.todo-text span.tag:nth-of-type(4n+2) {
+.todo-text span:nth-of-type(4n+2) {
     /* background: lightgoldenrodyellow; */
     background: yellowgreen;
 }
 
 .tags-input span:nth-of-type(4n+3),
-.todo-text span.tag:nth-of-type(4n+3) {
+.todo-text span:nth-of-type(4n+3) {
     /* background: lightcyan; */
     background: skyblue;
 }
 
 .tags-input span:nth-of-type(4n+4),
-.todo-text span.tag:nth-of-type(4n+4) {
+.todo-text span:nth-of-type(4n+4) {
     background: lightpink;
 }
 

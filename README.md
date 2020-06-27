@@ -1,7 +1,10 @@
 # Mobile-todoMVC
 Script Programming, Spring 2020, School of Software Engineering, Tongji University. Shanghai.
 
-Visit: http://101.37.34.56
+Visit:
+
+- 阿里云：http://101.37.34.56
+- Github Pages: https://1751200.github.io/Mobile-todoMVC/index.html
 
 ## 功能实现
 
@@ -48,7 +51,7 @@ Visit: http://101.37.34.56
 
 4. 设置 todo deadline
 
-    在 input field 边上有个选择 Deadline 日期的 `Date Picker`，可为 `todo` 项目设置一个deadline，并且下方依据 deadline 的远近来排列组合 `todo`
+    在 input field 边上有个选择 Deadline 日期的 `Date Picker`，可为 `todo` 项目设置一个deadline，并且下方依据 deadline 的远近来排列组合 `todo`，并根据 deadline 的远近为它设置不同的颜色来加以区分
 
 5. 为 `todo` 设置自选 Tag
 
@@ -75,19 +78,54 @@ Visit: http://101.37.34.56
 ## 参考的材料
 
 - Tags input 借鉴了 https://codepen.io/juliendargelos/details/MJjJZm
+    - 主要参考了 tag 输入和删除的方式
+    - 应用到我的代码中时，我重写了它的初始化方式、监听事件（键盘监听和 focus, blur 事件等）
 - 参考了大量 Stackoverflow, stackExchange 之类的论坛
 
 ## 功能演示
 
-1. 两种配色模式（注：深色模式我没有做适配，部分布局跟浅色模式不一致，所以建议老师测试的时候将电脑或者手机调成浅色模式）
+1. 两种配色模式（注：深色模式适配得不是很好，部分布局跟浅色模式不一致，所以建议老师测试的时候将电脑或者手机调成浅色模式）
 
     <table>
         <tr>
-            <td><img src="demo/assets/IMG_2150.PNG"></td>
-            <td><img src="demo/assets/IMG_2151.PNG"></td>
+            <td><img src="img/浅色.png"></td>
+            <td><img src="img/深色.png"></td>
         </tr>
     </table>
 
-2. 其他内容都在 demo 视频里，这里展示一下搜索功能
+2. 输入和删除 Tag
 
-    <img src="demo/assets/IMG_2153.PNG" width="40%">
+  <table>
+          <tr>
+              <td><img src="img/输入tag.png"></td>
+              <td><img src="img/确认删除tag.png"></td>
+          </tr>
+      </table>
+  
+3. 添加和编辑 todo
+
+    <table>
+            <tr>
+                <td><img src="img/添加todo.gif"></td>
+                <td><img src="img/编辑todo.gif"></td>
+            </tr>
+        </table>
+
+4. 删除 todo
+
+    <table>
+            <tr>
+                <td><img src="img/左滑删除.gif"></td>
+                <td><img src="img/右滑删除.gif"></td>
+            </tr>
+        </table>
+
+5. 两种过滤方式（文字和标签）
+
+    <table>
+        <tr>
+            <td><img src="img/filter.gif"></td>
+            <td><img src="img/search.gif"></td>
+        </tr>
+    </table>
+

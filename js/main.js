@@ -159,7 +159,7 @@ function initTodoItem(item) {
 function insertItemToList(id, completed, message, date, tags) {
     var text = "";
     tags.forEach(tag => {
-        text += '<span class="tag">' + tag + '</span>';
+        text += '<span>' + tag + '</span>';
         // text.replace(/>/gi, ">" + "\u200B");
     });
     text += message;
