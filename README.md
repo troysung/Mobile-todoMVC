@@ -1,7 +1,11 @@
 # Mobile-todoMVC
 Script Programming, Spring 2020, School of Software Engineering, Tongji University. Shanghai.
 
-Visit: http://101.37.34.56
+Visit: 
+
+Github Pages: https://1751200.github.io/Mobile-todoMVC/index.html
+
+阿里云：http://101.37.34.56
 
 ## 功能实现
 
