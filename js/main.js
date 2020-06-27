@@ -7,12 +7,20 @@ var $All = function (ele) {
     return document.querySelectorAll(ele);
 };
 var filterText = "";
+const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
 
+/**
+ * 设置一下搜索的字段，默认为 ""
+ * @param {string}} text 搜索的字段
+ */
 function setFilterText(text) {
     filterText = text;
     update();
 }
 
+/**
+ * 更新所有 todo 主要是更新按钮的状态、todo的显示状态和统计总数
+ */
 function update() {
     var footer = document.getElementById("footer");
     var filter = footer.querySelector('a.selected').innerText;
@@ -66,6 +74,10 @@ function update() {
     toggleAll.checked = todoItems.length == completedNum;
 }
 
+/**
+ * 更新 todo 的完成状态
+ * @param {element} item 要更新的 todo 的 DOM 元素
+ */
 function updateTodo(item) {
     var itemToUpdate = get(item.getAttribute("id"));
     // console.log(itemToUpdate.message);
@@ -84,6 +96,10 @@ function updateTodo(item) {
     update();
 }
 
+/**
+ * 初始化 todo，主要是绑定监听器
+ * @param {element} item 要初始化的 todo 的 DOM 元素
+ */
 function initTodoItem(item) {
     item.querySelector('.toggle').addEventListener('click', function () {
         updateTodo(this.parentElement);
@@ -132,6 +148,14 @@ function initTodoItem(item) {
     }, false);
 }
 
+/**
+ * 在页面中插入 todo 信息
+ * @param {int} id 插入的 todo 的 ID，为一个当前时间的时间戳
+ * @param {bool} completed 完成状态
+ * @param {string} message todo文本
+ * @param {string} date 日期
+ * @param {array} tags todo所附带的tag
+ */
 function insertItemToList(id, completed, message, date, tags) {
     var text = "";
     tags.forEach(tag => {
@@ -177,9 +201,19 @@ function insertItemToList(id, completed, message, date, tags) {
         //     '    </li>',
         //     '</ul>'
         // ].join('');
+        var nowTime = new Date().getTime();
+        var eleTime = new Date(date).getTime();
+        var deltaDay = (eleTime - nowTime) / MILLISECONDS_PER_DAY;
         var todoDate = document.createElement("div");
         todoDate.classList.add("todo-date");
         todoDate.innerHTML = date;
+        if (deltaDay < -1) {
+            todoDate.classList.add("expired");
+        } else if (deltaDay < 2) {
+            todoDate.classList.add("urgent");
+        } else {
+            todoDate.classList.add("adequate");
+        }
         var todoContent = document.createElement("div");
         todoContent.classList.add("todo-content");
         var todoItem = document.createElement("li");
@@ -234,6 +268,12 @@ function insertItemToList(id, completed, message, date, tags) {
     update();
 }
 
+/**
+ * 在 local storage 和页面中插入 todo
+ * @param {string} message 文本
+ * @param {string} date 日期
+ * @param {array} tags 存tag的数组
+ */
 function addTodo(message, date, tags) {
     var id = new Date().getTime();
     var itemToAdd = {};
@@ -248,6 +288,10 @@ function addTodo(message, date, tags) {
     insertItemToList(id, false, message, date, tags);
 }
 
+/**
+ * 删除 todo
+ * @param {element} item 要删除的 DOM 元素
+ */
 function removeTodo(item) {
     remove(item.getAttribute("id"));
     var todoContent = item.parentElement;
@@ -264,11 +308,13 @@ function removeTodo(item) {
 window.onload = function () {
 /** Dark mode */
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        const link = document.createElement("link")
-        link.type = 'text/css';
-        link.rel = 'stylesheet';
-        link.href = 'css/dark.css';
-        document.head.appendChild(link)
+        if (confirm("检测到深色主题，是否采用深色模式？") == true) {
+            const link = document.createElement("link");
+            link.type = 'text/css';
+            link.rel = 'stylesheet';
+            link.href = 'css/dark.css';
+            document.head.appendChild(link);
+        }
     }
 
 /** Init local Storage */

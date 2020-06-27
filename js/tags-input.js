@@ -1,8 +1,6 @@
 /**
- * 参考了 https://codepen.io/juliendargelos/details/MJjJZm
- * 修改了其中的样式，并记录和保存 Tag
- * 输入栏和后面的 Editable content 均使用了其中的方法
- * @param {element} element 输入栏
+ * 输入 tag
+ * @param {DOM Element} element 绑定到的 DOM 元素
  */
 var TagsInput = function (element) { 
     var self = this;
@@ -46,7 +44,6 @@ var TagsInput = function (element) {
                                 tags.push(tag.innerText);
                                 self.element.removeChild(tag);
                             });
-                            // console.log(text, date, tags);
                             addTodo(text, date, tags);
                         }
                     }
@@ -54,6 +51,7 @@ var TagsInput = function (element) {
                     self.element.setAttribute('contenteditable', 'false');
                     self.element.removeEventListener('keydown', keydown);
                     self.element.removeEventListener('focus', focus);
+                    self.element.classList.remove("editing")
                     // console.log(self.element.parentElement.getAttribute("id"));
                     var todoToUpdate = get(self.element.parentElement.getAttribute("id"));
                     var updatedTags = [];
@@ -141,15 +139,38 @@ var TagsInput = function (element) {
                     element.querySelectorAll("span").forEach(tag => {
                         tag.setAttribute('contenteditable', 'false');
                     });
-                    element.addEventListener('dblclick', function () {
-                        this.setAttribute('contenteditable', 'true');
-                        element.removeEventListener('keydown', keydown);
-                        element.addEventListener('keydown', keydown);
+                    // element.addEventListener('dblclick', function () {
+                        // this.setAttribute('contenteditable', 'true');
+                        // element.removeEventListener('keydown', keydown);
+                        // element.addEventListener('keydown', keydown);
 
-                        element.removeEventListener('focus', focus);
-                        element.addEventListener('focus', focus);
-                    });
+                        // element.removeEventListener('focus', focus);
+                        // element.addEventListener('focus', focus);
+                    // });
+                    // Add custom double click listener for todo detail
+                    // var todoDetail = todoItem.querySelector('.todo-detail');
+                    var touch1, touch2;
+                    var clicked = 1;
+                    element.addEventListener('click', function () {
+                        if (clicked == 1) {
+                            touch1 = new Date().getTime();
+                            clicked++;
+                        } else if (clicked == 2) {
+                            touch2 = new Date().getTime();
+                            if (Math.abs(touch2 - touch1) < 500) {
+                                this.setAttribute('contenteditable', 'true');
+                                element.removeEventListener('keydown', keydown);
+                                element.addEventListener('keydown', keydown);
 
+                                element.removeEventListener('focus', focus);
+                                element.addEventListener('focus', focus);
+                                element.classList.add("editing");
+                                clicked = 1;
+                            } else {
+                                touch1 = new Date().getTime();
+                            }
+                        }
+                    }, false);
                     this.text = initChar + initChar + element.innerHTML.split(">")[element.innerHTML.split(">").length - 1];
                 }
             }
